@@ -1,0 +1,208 @@
+<!-- BEGIN HEADER -->
+
+<div class="header navbar navbar-inverse">
+
+  <!-- BEGIN TOPPEST BAR -->
+  <div class="toppestBar" id="topBar">
+    <div class="container" style="width: 1285px; padding: 0px;">
+
+      <div style="float: left;">
+        <span class="fa fa-phone-square" style="font-size: medium;">&nbsp;</span>
+        <a href="tel:+919876543210" alt="Call Us">+91 9876543210</a>
+        <span style="border-left: solid 1px #d0d0d0;margin: 0 9px;">&nbsp;</span>
+        <span class="fa fa-envelope" style="font-size: medium">&nbsp;</span>
+        <a href="mailto:contact@handy.com" alt="Mail Us">contact@handy.com</a>
+      </div>
+
+      <div style="float: right;">
+        <span class="fa fa-question-circle" style="font-size: medium;">&nbsp;</span>
+        <a href="#" alt="Help">Help</a>
+        <span style="border-left: solid 1px #d0d0d0;margin: 0 9px;">&nbsp;</span>
+        <span class="fa fa-info-circle" style="font-size: medium">&nbsp;</span>
+        <a href="#" alt="Frequently asked questions">F.A.Q.</a>
+      </div>
+    </div>
+  </div>
+  <!-- END TOPPEST BAR -->
+
+  <!-- BEGIN TOP NAVIGATION BAR -->
+
+  <div class="navbar-inner">
+    <!-- BEGIN NAVIGATION HEADER -->
+    <!-- END NAVIGATION HEADER -->
+    <!-- BEGIN CONTENT HEADER -->
+    <div class="header-quick-nav container" style="width: 1349px; padding: 0px;">
+
+      <!-- BEGIN HEADER LEFT SIDE SECTION -->
+      <div>
+        <!-- BEGIN LOGO -->
+        <a href="#" style="float:left;">
+          </a>
+        <!-- END LOGO -->
+        <!-- BEGIN SLIM NAVIGATION TOGGLE -->
+        <ul class="nav quick-section">
+          <li class="quicklinks">
+            <a href="#" class="" id="layout-condensed-toggle">
+              <div class="fa fa-bars" style="color: #666; font-size:large;"></div>
+            </a>
+          </li>
+        </ul>
+        <!-- END SLIM NAVIGATION TOGGLE -->
+
+        <!-- BEGIN HEADER QUICK LINKS -->
+        <ul class="nav quick-section">
+
+
+          <!-- BEGIN SEARCH BOX -->
+
+          <li class="m-r-10 input-prepend inside search-form no-boarder">
+            <div class="advanced-search box-radius">
+
+              <%= form_tag spree.products_path, :method => :get, :class => "form-inline" do %>
+                  <div class="form-group search-category">
+                    <select id="category-select" class="search-category-select">
+                      <option value="0" selected="1">All Categories</option>
+                      <option value="1">Men</option>
+                      <option value="2">Women</option>
+                      <option value="3">Kids</option>
+                    </select>
+                  </div>
+                  <div class="form-group search-input">
+                    <%= search_field_tag :keywords, params[:keywords], :placeholder => "What are you looking for?" %>
+                    <% if params[:search] && params[:search][:ascend_by_master_price] %>
+                        <%= hidden_field_tag "search[ascend_by_master_price]",
+                                             params[:search][:ascend_by_master_price], id: 'sort_by_field' %>
+                    <% end %>
+                  </div>
+                  <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
+              <% end -%>
+            </div>
+          </li>
+
+          <!-- END SEARCH BOX -->
+
+
+        </ul>
+        <!-- BEGIN HEADER QUICK LINKS -->
+
+        <!-- BEGIN CART SECTION -->
+
+        <%#= render :partial => 'spree/orders/quick_cart', locals: { :order => @order } %>
+
+        <!-- ENDS CART SECTION -->
+
+        <%#= render :partial => 'spree/shared/login_bar', locals: { :order => @order } %>
+
+      </div>
+      <!-- END HEADER LEFT SIDE SECTION -->
+
+
+      <!-- BEGIN HEADER RIGHT SIDE SECTION -->
+      <%if spree_current_user %>
+          <div class="pull-right">
+            <div class="chat-toggler">
+              <!-- BEGIN NOTIFICATION CENTER -->
+              <a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom" data-content="" data-toggle="dropdown">
+                <div class="user-details">
+                  <div class="username">
+                    <!--<span class="badge badge-important">3</span>&nbsp;John<span class="bold">&nbsp;Smith</span>-->
+                    <% user_name= spree_current_user.name==nil ? spree_current_user.login.split("@")[0] : spree_current_user.name %>
+                    <span class="bold"><%= user_name %></span>
+
+                  </div>
+                </div>
+                <div class="iconset top-down-arrow"></div>
+              </a>
+
+
+
+
+              <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+                <li><%= link_to Spree.t(:my_account), spree.account_path %>
+                </li>
+
+
+                <li class="divider"></li>
+                <li><%= link_to "My Orders", spree.orders_populate_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "My Wishlist", spree.wishlists_path %></li>
+
+                <li class="divider"></li>
+                <li><%= link_to Spree.t(:logout), spree.logout_path %></li>
+              </ul>
+
+              <!--END NOTIFICATION CENTER-->
+              <!--BEGIN PROFILE PICTURE -->
+              <div class="profile-pic">
+                <img src="<%= image_path('profiles/avatar_small.jpg') %>" alt="" data-src="<%= image_path('profiles/avatar_small.jpg') %>" data-src-retina="<%= image_path('profiles/avatar_small2x.jpg') %>" width="35" height="35" />
+              </div>
+              <!-- END PROFILE PICTURE -->
+            </div>
+            <!-- BEGIN HEADER NAV BUTTONS -->
+            <!--<ul class="nav quick-section">-->
+            <!--&lt;!&ndash; BEGIN SETTINGS &ndash;&gt;-->
+            <!--<li class="quicklinks"> -->
+            <!--<a data-toggle="dropdown" class="dropdown-toggle pull-right" href="#" id="user-options">						-->
+            <!--<div class="iconset top-settings-dark"></div> 	-->
+            <!--</a>-->
+            <!--<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="user-options">-->
+            <!--<li><a href="#">Normal Link</a></li>-->
+            <!--<li><a href="#">Badge Link&nbsp;&nbsp;<span class="badge badge-important animated bounceIn">2</span></a></li>-->
+            <!--<li class="divider"></li>                -->
+            <!--<li><a href="#"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Separated Link</a></li>-->
+            <!--</ul>-->
+            <!--</li>-->
+            <!--&lt;!&ndash; END SETTINGS &ndash;&gt;-->
+            <!--<li class="quicklinks"><span class="h-seperate"></span></li> -->
+            <!--&lt;!&ndash; BEGIN CHAT SIDEBAR TOGGLE &ndash;&gt;-->
+            <!--<li class="quicklinks"> 	-->
+            <!--<a id="chat-menu-toggle" href="#sidr" class="chat-menu-toggle">-->
+            <!--<div class="iconset top-chat-dark">-->
+            <!--<span class="badge badge-important hide" id="chat-message-count">1</span>-->
+            <!--</div>-->
+            <!--</a> -->
+            <!--&lt;!&ndash; BEGIN OPTIONAL RECENT CHAT POP UP NOTIFICATION &ndash;&gt;-->
+            <!--<div class="simple-chat-popup chat-menu-toggle hide">-->
+            <!--<div class="simple-chat-popup-arrow"></div>-->
+            <!--<div class="simple-chat-popup-inner">-->
+            <!--<div style="width:100px">-->
+            <!--<div class="semi-bold">Name</div>-->
+            <!--<div class="message">Message...</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; END OPTIONAL RECENT CHAT POP UP NOTIFICATION &ndash;&gt;-->
+            <!--</li>-->
+            <!--&lt;!&ndash; END CHAT SIDEBAR TOGGLE &ndash;&gt; -->
+            <!--</ul>-->
+            <!-- END HEADER NAV BUTTONS -->
+          </div>
+      <% end %>
+
+      <!-- END HEADER RIGHT SIDE SECTION -->
+    </div>
+    <!-- END CONTENT HEADER -->
+  </div>
+  <!-- END TOP NAVIGATION BAR -->
+
+  <%#= render partial: 'spree/shared/horizontalmenu' %>
+
+</div>
+<!-- END HEADER -->
+
+
+
+
+
+
+<script>
+  window.onscroll = function() {myFunction()};
+
+  function myFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      document.getElementById("topBar").className = "toppestBar-hide";
+    } else {
+      document.getElementById("topBar").className = "toppestBar";
+    }
+  }
+</script>
